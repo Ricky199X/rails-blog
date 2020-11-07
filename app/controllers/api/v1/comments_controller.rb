@@ -1,8 +1,9 @@
 module Api
-    module v1
+    module V1
         class CommentsController < ApplicationController
 
-            http_basic_authenticate_with name: "dhh", password: "secret", only: :destroy
+            protect_from_forgery with: :null_session
+            # http_basic_authenticate_with name: "dhh", password: "secret", only: :destroy
 
             def create
                 article = Article.find(params[:article_id])
@@ -18,7 +19,7 @@ module Api
             def destroy
                 article = Article.find(params[:article_id])
                 comment = article.comments.find(params[:id])
-
+                
                 if comment.destroy
                     render json: ArticleSerializer.new(article).serialized_json
                 else

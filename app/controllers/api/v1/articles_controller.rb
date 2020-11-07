@@ -1,7 +1,8 @@
 module Api
-    module v1
+    module V1
         class ArticlesController < ApplicationController
 
+            protect_from_forgery with: :null_session
 
             def index
                 articles = Article.all
@@ -15,6 +16,10 @@ module Api
 
             def new
                 article = Article.new
+            end
+
+            def edit
+                article = Article.find(params[:id])
             end
 
             def create
