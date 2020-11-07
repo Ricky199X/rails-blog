@@ -1,6 +1,7 @@
 // this will fetch articles from API and render them in a table to the DOM
 
 import React, { useState, useEffect, Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 const Articles = () => {
@@ -22,16 +23,28 @@ const Articles = () => {
 
     const list = articles.map(article => {
         return (
-            <li key={article.attributes.title}>
-                {article.attributes.title}
-            </li>
+
+
+            // <td key={article.attributes.text}>{article.attributes.text}</td>
+
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Text</th>
+                </tr>
+
+                <tr>
+                    <td key={article.attributes.title}>{article.attributes.title}</td>
+                    <td key={article.attributes.text}>{article.attributes.text}</td>
+                </tr>
+            </table>
         )
     })
 
     return (
         <Fragment>
             <h1>Articles Component</h1>
-            <ul>{list}</ul>
+            {list}
         </Fragment>
     )
 }
