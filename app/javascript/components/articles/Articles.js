@@ -1,19 +1,39 @@
 // this will fetch articles from API and render them in a table to the DOM
 
-import React from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
+import axios from 'axios'
 
-class Articles extends React.Component {
+const Articles = () => {
 
-    // needs to call to the db, get the articles 
+    const [articles, setArticles] = useState([])
 
+    useEffect(() => {
+        // Get all articles from API
+        // Update Articles in state 
 
-    render() {
+        const articlesURL = 'http://localhost:3000/api/v1/articles'
+        axios.get(articlesURL)
+            .then(resp => {
+                setArticles(resp.data.data)
+            })
+            .catch(resp => console.log(resp))
+
+    }, [articles.length])
+
+    const list = articles.map(article => {
         return (
-            <div>
-                <h1>Articles Component</h1>
-            </div>
+            <li key={article.attributes.title}>
+                {article.attributes.title}
+            </li>
         )
-    }
+    })
+
+    return (
+        <Fragment>
+            <h1>Articles Component</h1>
+            <ul>{list}</ul>
+        </Fragment>
+    )
 }
 
 export default Articles
