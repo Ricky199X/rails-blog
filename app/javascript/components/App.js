@@ -1,5 +1,8 @@
 import React from 'react'
 import { Route, Switch, Link } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Table from 'react-bootstrap/Table'
+
 
 // Component Imports
 import Welcome from './Welcome'
