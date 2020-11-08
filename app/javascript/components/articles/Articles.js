@@ -3,15 +3,16 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Article from './Article'
 
 const Articles = () => {
 
     const [articles, setArticles] = useState([])
 
     useEffect(() => {
+
         // Get all articles from API
         // Update Articles in state 
-
         const articlesURL = 'http://localhost:3000/api/v1/articles'
         axios.get(articlesURL)
             .then(resp => {
@@ -23,10 +24,6 @@ const Articles = () => {
 
     const list = articles.map(article => {
         return (
-
-
-            // <td key={article.attributes.text}>{article.attributes.text}</td>
-
             <table>
                 <tr>
                     <th>Title</th>
@@ -34,8 +31,19 @@ const Articles = () => {
                 </tr>
 
                 <tr>
-                    <td key={article.attributes.title}>{article.attributes.title}</td>
-                    <td key={article.attributes.text}>{article.attributes.text}</td>
+                    <td key={article.attributes.title}>
+                        {article.attributes.title}
+                    </td>
+                    <td key={article.attributes.text}>
+                        {article.attributes.text}
+                    </td>
+                    <td key={article.attributes.id}>
+                        <Link to={`/articles/${article.id}`}
+                            key={Math.random()}
+                        >
+                            Show
+                        </Link>
+                    </td>
                 </tr>
             </table>
         )
@@ -43,7 +51,7 @@ const Articles = () => {
 
     return (
         <Fragment>
-            <h1>Articles Component</h1>
+            <h1>Listing Articles</h1>
             {list}
         </Fragment>
     )
