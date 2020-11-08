@@ -22,15 +22,15 @@ const Articles = () => {
 
     }, [articles.length])
 
-    const renderArticles = (article, index) => {
+    const listArticles = articles.map(article => {
         return (
-            <tr key={index}>
-                <td>{article.attributes.title}</td>
-                <td>{article.attributes.text}</td>
-            </tr>
+            <Article
+                key={article.attributes.title}
+                id={article.id}
+                attributes={article.attributes}
+            />
         )
-    }
-
+    })
 
     return (
         <Fragment>
@@ -40,10 +40,12 @@ const Articles = () => {
                     <tr>
                         <th>Title</th>
                         <th>Text</th>
+                        <th>Show</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {articles.map(renderArticles)}
+                    {listArticles}
                 </tbody>
             </ReactBootStrap.Table>
         </Fragment>
@@ -53,35 +55,35 @@ const Articles = () => {
 export default Articles
 
 
+// renderArticles
+// const renderArticles = (article, index) => {
+//     return (
+//         <tr key={index}>
+//             <td>{article.attributes.title}</td>
+//             <td>{article.attributes.text}</td>
+//             <td>
+//                 <Link to={`/articles/${props.id}`}>
+// View Article
+// </Link>
+//             </td>
+//             <td>
+//                 Edit
+//             </td>
+//         </tr>
+//     )
+// }
 
-// <table>
-            //     <tr>
-            //         <th>Title</th>
-            //         <th>Text</th>
-            //     </tr>
-
-            //     <tr>
-            //         <td key={article.attributes.title}>
-            //             {article.attributes.title}
-            //         </td>
-            //         <td key={article.attributes.text}>
-            //             {article.attributes.text}
-            //         </td>
-            //         <td key={article.id}>
-            //             <Link to={`/articles/${article.id}`} key={Math.random()}>
-            //                 <Article
-            //                     id={article.id}
-            //                     title={article.attributes.title}
-            //                     text={article.attributes.text}
-            //                 />
-            //             </Link>
-            //         </td>
-            //         {/* <td key={article.attributes.id}>
-            //             <Link to={`/articles/${article.id}`}
-            //                 key={Math.random()}
-            //             >
-            //                 Show
-            //             </Link>
-            //         </td> */}
-            //     </tr>
-            // </table>
+// table markdown
+{/* <ReactBootStrap.Table responsive="sm bordered">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Text</th>
+                        <th>Show</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {articles.map(renderArticles)}
+                </tbody>
+            </ReactBootStrap.Table> */}

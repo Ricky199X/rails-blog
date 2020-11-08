@@ -7,7 +7,8 @@ import Table from 'react-bootstrap/Table'
 // Component Imports
 import Welcome from './Welcome'
 import Articles from './articles/Articles'
-import Article from './articles/Article'
+// import Article from './articles/Article'
+import Article from './article/Article'
 
 const App = () => {
     return (
