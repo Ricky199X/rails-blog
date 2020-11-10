@@ -17,21 +17,29 @@ class CommentForm extends React.Component {
 
     render() {
         return (
-            <Form>
-                <Form.Group>
-                    <Form.Label>Commenter</Form.Label>
-                    <Form.Control type="commenter" placeholder="Enter Your Name" />
-                </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Body</Form.Label>
-                    <Form.Control type="body" placeholder="Your comment here" />
-                </Form.Group>
+            <div className="comment-form">
+                <h3>Add a comment:</h3>
+                <Form>
+                    <Form.Group>
+                        <Form.Label>
+                            <strong>Commenter</strong>
+                        </Form.Label>
+                        <Form.Control type="commenter" placeholder="Enter Your Name" />
+                    </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Submit
+                    <Form.Group>
+                        <Form.Label>
+                            <strong>Body</strong>
+                        </Form.Label>
+                        <Form.Control type="body" placeholder="Your comment here" />
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">
+                        Submit
                 </Button>
-            </Form>
+                </Form>
+            </div>
         )
 
     }
