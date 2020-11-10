@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
 import Comment from '../comments/Comment'
+import CommentForm from '../comments/CommentForm'
 
 const Article = (props) => {
 
@@ -51,8 +52,16 @@ const Article = (props) => {
                         <strong>Comments: </strong>
                         {displayComments()}
                     </div>
-                    <div className="form">This form is going here</div>
+
+
+                    <div className="form">
+                        <CommentForm />
+                    </div>
+
+
                     <div className="buttons">The back and edit buttons will be here</div>
+
+
                 </div>
             </Fragment>
         )
