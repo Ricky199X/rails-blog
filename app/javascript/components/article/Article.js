@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
+import Comment from '../comments/Comment'
 
 const Article = (props) => {
 
     const [article, setArticle] = useState({})
-
-    const [comment, setComment] = useState({})
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
@@ -18,27 +17,50 @@ const Article = (props) => {
                 setLoaded(true)
             })
             .catch(resp => console.log(resp))
-    }, [article.length]);
+    }, [])
+
+    // map comments array
+    const displayComments = () => {
+        return article.included.map(comment => {
+            console.log(comment)
+            return (
+                <Comment
+                    key={comment.id}
+                    id={comment.id}
+                    commenter={comment.attributes.commenter}
+                    body={comment.attributes.body}
+                />
+            )
+        })
+    }
+
 
     return loaded ?
         (
-            <div className="container">
-                <div className="article">
-                    <strong>Title: </strong>
-                    {article.data.attributes.title}
+            <Fragment>
+                <div className="container">
+                    <div className="article">
+                        <strong>Title: </strong>
+                        {article.data.attributes.title}
+                    </div>
+                    <div className="text">
+                        <strong>Text: </strong>
+                        {article.data.attributes.text}
+                    </div>
+                    <div className="comments">
+                        <strong>Comments: </strong>
+                        {displayComments()}
+                    </div>
+                    <div className="form">This form is going here</div>
+                    <div className="buttons">The back and edit buttons will be here</div>
                 </div>
-                <div className="text">
-                    <strong>Text: </strong>
-                    {article.data.attributes.text}
-                </div>
-                <div className="comments"></div>
-                <div className="form">This form is going here</div>
-                <div className="buttons">The back and edit buttons will be here</div>
-            </div>
+            </Fragment>
         )
         :
         (
-            <h1>Loading!!!</h1>
+            <div className="container">
+                <h1>Loading!!!</h1>
+            </div>
         )
 }
 
