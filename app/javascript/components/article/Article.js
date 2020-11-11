@@ -25,7 +25,6 @@ const Article = (props) => {
     // map comments array
     const displayComments = () => {
         return article.included.map(comment => {
-            console.log(comment)
             return (
                 <Comment
                     key={comment.id}
@@ -37,6 +36,13 @@ const Article = (props) => {
         })
     }
 
+    const handleChange = (event) => {
+        event.preventDefault()
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+    }
 
     return loaded ?
         (
