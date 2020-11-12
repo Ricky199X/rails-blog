@@ -36,13 +36,6 @@ const Article = (props) => {
         })
     }
 
-    const handleChange = (event) => {
-        event.preventDefault()
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault()
-    }
 
     return loaded ?
         (
@@ -67,7 +60,9 @@ const Article = (props) => {
 
 
                     <div className="comment-section">
-                        <CommentForm />
+                        <CommentForm
+                            articleId={article.data.id}
+                        />
                     </div>
 
 

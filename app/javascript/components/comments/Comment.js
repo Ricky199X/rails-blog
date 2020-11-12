@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Comment = (props) => {
-    console.log(`hello world`)
+
     return (
         <div className="comment" key={props.id}>
             <div className="commenter">

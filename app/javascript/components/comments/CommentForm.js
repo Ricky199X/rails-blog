@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
+import axios from 'axios'
 
 
 class CommentForm extends React.Component {
@@ -10,15 +11,13 @@ class CommentForm extends React.Component {
 
         this.state = {
             commenter: '',
-            body: '',
-            shouldRedirect: false
+            body: ''
         }
     }
 
 
     handleChange = (event) => {
         event.preventDefault()
-        console.log(event.target.value)
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -27,7 +26,19 @@ class CommentForm extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(`this is a submission`)
-        console.log(this.state)
+
+        const csrfToken = document.querySelector('[name=csrf-token]').content
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+
+        // submit the comment to the database
+        const comment = this.state
+        const article_id = this.props.articleId
+
+        axios.post('/api/v1/comments', { comment, article_id })
+            .then(resp => {
+                debugger
+            })
+            .catch(resp => { })
     }
 
     render() {
